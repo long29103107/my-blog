@@ -3,12 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
-<style scoped>
-* {
-  padding: 0;
-  margin: 0;
-}
-</style>
+<style scoped></style>

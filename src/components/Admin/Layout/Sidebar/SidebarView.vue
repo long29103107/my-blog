@@ -1,0 +1,93 @@
+<template>
+  <a-layout-sider
+    id="#sidebar"
+    breakpoint="lg"
+    collapsed-width="0"
+    @collapse="onCollapse"
+    @breakpoint="onBreakpoint"
+  >
+    <image-sidebar-view :collapsed="collapsed"> </image-sidebar-view>
+
+    <!-- Menu -->
+    <a-menu-item key="menu1">
+      <pie-chart-outlined />
+      <span>Dashboard</span>
+    </a-menu-item>
+    <a-sub-menu key="submenu1">
+      <template #title>
+        <span>
+          <user-outlined />
+          <span>Users</span>
+        </span>
+      </template>
+      <a-menu-item key="innersubmenu1"
+        ><router-link to="/admin/roles">Roles</router-link></a-menu-item
+      >
+      <a-menu-item key="innersubmenu2"
+        ><router-link to="/admin/permissions">Perrmission</router-link></a-menu-item
+      >
+      <a-menu-item key="innersubmenu3"
+        ><router-link to="/admin/security-matrix">Security Matrix</router-link></a-menu-item
+      >
+    </a-sub-menu>
+  </a-layout-sider>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import { PieChartOutlined, UserOutlined } from '@ant-design/icons-vue'
+import ImageSidebarView from '../Sidebar/ImageSidebarView.vue'
+
+export default defineComponent({
+  name: 'SidebarView',
+  components: {
+    UserOutlined,
+    PieChartOutlined,
+    ImageSidebarView
+  },
+  setup() {
+    const onCollapse = (collapsed: boolean, type: string) => {
+      console.log(collapsed, type)
+    }
+
+    const onBreakpoint = (broken: boolean) => {
+      console.log(broken)
+    }
+
+    return {
+      collapsed: ref<boolean>(false),
+      selectedKeys: ref<string[]>(['4']),
+      onCollapse,
+      onBreakpoint
+    }
+  }
+})
+</script>
+<style scroped>
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+[data-theme='dark'] .site-layout-sub-header-background {
+  background: #141414;
+}
+
+#sidebar {
+  position: relative;
+}
+
+.ant-layout #aside .ant-layout-sider-zero-width-trigger {
+  position: fixed;
+  top: 10px;
+}
+</style>
