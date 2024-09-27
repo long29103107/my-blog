@@ -1,8 +1,7 @@
-import router from '../src/router'
+import router from '@/router'
 import Antd from 'ant-design-vue'
 import App from './App.vue'
 import { createApp } from 'vue'
-//import { registerLayouts } from '/'
 
 const app = createApp(App)
 
