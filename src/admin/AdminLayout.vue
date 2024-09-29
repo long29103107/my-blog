@@ -1,34 +1,13 @@
 <template>
   <a-layout>
-    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible class="layout-admin">
-      <div class="logo"></div>
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-        <a-menu-item key="1">
-          <user-outlined />
-          <span>nav 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <video-camera-outlined />
-          <span>nav 2</span>
-        </a-menu-item>
-        <a-menu-item key="3">
-          <upload-outlined />
-          <span>nav 3</span>
-        </a-menu-item>
-      </a-menu>
+    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible class="admin-layout">
+      <logo />
+      <menu-sidebar />
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
-        <menu-unfold-outlined
-          v-if="collapsed"
-          class="trigger custom-trigger"
-          @click="() => (collapsed = !collapsed)"
-        />
-        <menu-fold-outlined
-          v-else
-          class="trigger custom-trigger"
-          @click="() => (collapsed = !collapsed)"
-        />
+      <a-layout-header style="background: #fff; padding: 0 15px">
+        <menu-unfold-outlined v-if="collapsed" class="trigger" @click="handleCollape" />
+        <menu-fold-outlined v-else class="trigger" @click="handleCollape" />
       </a-layout-header>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
@@ -38,19 +17,35 @@
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue'
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons-vue'
-const selectedKeys = ref<string[]>(['1'])
+<script lang="ts">
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+import { ref, defineComponent } from 'vue'
+
+import Logo from './components/Common/Menu/Logo.vue'
+import MenuSidebar from './components/Common/Menu/MenuSidebar.vue'
+
 const collapsed = ref<boolean>(false)
+
+export default defineComponent({
+  components: { Logo, MenuSidebar, MenuUnfoldOutlined, MenuFoldOutlined },
+  methods: {
+    handleCollape() {
+      collapsed.value = !collapsed.value
+    }
+  },
+  data() {
+    return {
+      collapsed
+    }
+  }
+})
 </script>
+
 <style>
+.admin-layout {
+  min-height: 100vh;
+}
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
@@ -61,20 +56,6 @@ const collapsed = ref<boolean>(false)
 
 #components-layout-demo-custom-trigger .trigger:hover {
   color: #1890ff;
-}
-
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 16px;
-}
-
-#components-layout-demo-custom-trigger .custom-trigger {
-  padding-left: 15px !important;
-}
-
-.site-layout .site-layout-background {
-  background: #fff;
 }
 
 .layout-admin {
