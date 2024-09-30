@@ -5,34 +5,28 @@
       <menu-sidebar />
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0 15px">
-        <menu-unfold-outlined v-if="collapsed" class="trigger" @click="handleCollape" />
-        <menu-fold-outlined v-else class="trigger" @click="handleCollape" />
-      </a-layout-header>
+      <header-admin
+        :collapsed="collapsed"
+        @update:collapsed="($event) => (foo = $event)"
+      />
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
       >
-        Content
+        <router-view />
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 <script lang="ts">
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { ref, defineComponent } from 'vue'
-
 import Logo from './components/Common/Menu/Logo.vue'
 import MenuSidebar from './components/Common/Menu/MenuSidebar.vue'
+import HeaderAdmin from '@/admin/components/Common/MainAdmin/HeaderAdmin.vue'
 
 const collapsed = ref<boolean>(false)
 
 export default defineComponent({
-  components: { Logo, MenuSidebar, MenuUnfoldOutlined, MenuFoldOutlined },
-  methods: {
-    handleCollape() {
-      collapsed.value = !collapsed.value
-    }
-  },
+  components: { Logo, MenuSidebar },
   data() {
     return {
       collapsed

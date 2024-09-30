@@ -4,24 +4,24 @@
   </a-menu>
 </template>
 
-<script lang="ts">
-import MenuSidebarItemType from '../../../types/Menu/MenuSidebarItemType'
+<script setup lang="ts">
+import type MenuSidebarItemType from '../../../types/Menu/MenuSidebarItemType'
 import MenuSidebarItem from './MenuSidebarItem.vue'
 import { ref, defineComponent } from 'vue'
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
+import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
 
 const dataMenu: MenuSidebarItemType[] = [
-  { key: '1', label: 'Home', icon: UserOutlined },
-  { key: '2', label: 'Home 1', icon: VideoCameraOutlined },
-  { key: '3', label: 'Home 2', icon: UploadOutlined }
+  { key: '1', label: 'Dashboard', icon: VideoCameraOutlined, path: '/admin' },
+  { key: '2', label: 'User Managerment', icon: UserOutlined, path: '/admin/user-managerment' }
 ]
+const selectedKeys = ref<string[]>(['1'])
 
-export default defineComponent({
+const componenent = defineComponent({
   name: 'MenuSidebar',
   components: { MenuSidebarItem },
   data() {
     return {
-      selectedKeys: ref<string[]>(['1']),
+      selectedKeys,
       dataMenu
     }
   }

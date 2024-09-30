@@ -1,23 +1,26 @@
 <template>
   <a-menu-item :key="menuItem.key">
     <component :is="menuItem.icon" v-if="menuItem.icon" />
-    <span>{{ menuItem.label }}</span>
+    <span
+      ><router-link :to="menuItem.path"> {{ menuItem.label }}</router-link></span
+    >
   </a-menu-item>
 </template>
 
-<script lang="ts">
-import MenuSidebarItemType from './../../../types/Menu/MenuSidebarItemType'
-import { defineComponent, PropType } from 'vue'
+<script setup lang="ts">
+import type MenuSidebarItemType from './../../../types/Menu/MenuSidebarItemType'
+import { defineComponent, type PropType } from 'vue'
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
 
-export default defineComponent({
-  name: 'MenuSidebarItem',
-  components: { UserOutlined, VideoCameraOutlined, UploadOutlined },
-  props: {
-    menuItem: {
-      type: Object as PropType<MenuSidebarItemType>,
-      required: true
-    }
+const props = defineProps({
+  menuItem: {
+    type: Object as PropType<MenuSidebarItemType>,
+    required: true
   }
+})
+
+const componenent = defineComponent({
+  name: 'MenuSidebarItem',
+  components: { UserOutlined, VideoCameraOutlined, UploadOutlined }
 })
 </script>

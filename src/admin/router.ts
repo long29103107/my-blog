@@ -1,22 +1,22 @@
 const Layout = () => import('@/admin/AdminLayout.vue')
-const Policy = () => import('@/admin/components/Policy.vue')
-const About = () => import('@/admin/components/About.vue')
+const Dasboard = () => import('@/admin/components/Dasboard/index.vue')
+const UserManagerment = () => import('@/admin/components/UserManagerment/index.vue')
 
 export default [
   {
     path: '/admin',
-    component: Layout
-    // children: [
-    //   {
-    //     path: '',
-    //     name: 'AdminPolicy',
-    //     component: Policy
-    //   },
-    //   {
-    //     path: 'about',
-    //     name: 'AdminAbout',
-    //     component: About
-    //   }
-    // ]
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'Dasboard',
+        component: Dasboard
+      },
+      {
+        path: 'user-managerment',
+        name: 'UserManagerment',
+        component: UserManagerment
+      }
+    ]
   }
 ]
