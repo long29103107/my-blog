@@ -1,19 +1,18 @@
 <template>
   <a-layout>
-    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible class="admin-layout">
+    <a-layout-sider
+      v-model:collapsed="isCollapsed"
+      :trigger="null"
+      collapsible
+      class="admin-layout"
+    >
       <logo />
       <menu-sidebar />
     </a-layout-sider>
     <a-layout>
-      <header-admin
-        :collapsed="collapsed"
-        @update:collapsed="($event) => (foo = $event)"
-      />
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
-        <router-view />
-      </a-layout-content>
+      <header-admin :collapsed="isCollapsed" @update:collapsed="handleCollapsed" />
+
+      <content-admin />
     </a-layout>
   </a-layout>
 </template>
@@ -22,14 +21,20 @@ import { ref, defineComponent } from 'vue'
 import Logo from './components/Common/Menu/Logo.vue'
 import MenuSidebar from './components/Common/Menu/MenuSidebar.vue'
 import HeaderAdmin from '@/admin/components/Common/MainAdmin/HeaderAdmin.vue'
+import ContentAdmin from '@/admin/components/Common/MainAdmin/ContentAdmin.vue'
 
-const collapsed = ref<boolean>(false)
+const isCollapsed = ref<boolean>(false)
+
+const handleCollapsed = () => {
+  isCollapsed.value = !isCollapsed.value
+}
 
 export default defineComponent({
-  components: { Logo, MenuSidebar },
+  components: { Logo, MenuSidebar, HeaderAdmin, ContentAdmin },
   data() {
     return {
-      collapsed
+      isCollapsed,
+      handleCollapsed
     }
   }
 })

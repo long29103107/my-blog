@@ -1,31 +1,36 @@
 <template>
   <a-layout-header style="background: #fff; padding: 0 15px">
-    <menu-unfold-outlined v-if="collapsed" class="trigger" @click="handleCollape" />
-    <menu-fold-outlined v-else class="trigger" @click="handleCollape" />
+    <menu-unfold-outlined v-if="collapsed" class="trigger" @click="toggleSidebar" />
+    <menu-fold-outlined v-else class="trigger" @click="toggleSidebar" />
   </a-layout-header>
 </template>
 
-<script setup lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 
-const props = defineProps(['collapsed'])
-const emit = defineEmits(['update:collapsed'])
-
-const props = defineProps({
-  collapsed: {
-    type: Boolean,
-    required: false,
-    default: false
-  }
-})
-
-const component = defineComponent({
+export default defineComponent({
   name: 'HeaderAdmin',
-  component: [MenuUnfoldOutlined, MenuFoldOutlined],
-  methods: {
-    handleCollape() {
-      //this.$emit('update:modelValue', !collapsed)
+  components: { MenuUnfoldOutlined, MenuFoldOutlined },
+  props: {
+    collapsed: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  setup(props, { emit }) {
+    const isCollapsed = ref<boolean>()
+
+    // Method to toggle collapsed state and emit event
+    const toggleSidebar = () => {
+      isCollapsed.value = !props.collapsed
+      emit('update:collapsed', isCollapsed.value)
+    }
+
+    return {
+      isCollapsed,
+      toggleSidebar
     }
   }
 })
