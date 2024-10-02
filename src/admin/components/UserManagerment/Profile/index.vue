@@ -22,7 +22,3 @@
 </template>
 
 <script lang="ts" setup></script>
-
-<style setup lang="scss">
-@import url('../../../styles//user-management/profile.module.scss');
-</style>

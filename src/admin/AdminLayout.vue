@@ -40,24 +40,6 @@ export default defineComponent({
 })
 </script>
 
-<style>
-.admin-layout {
-  min-height: 100vh;
-}
-
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
-.layout-admin {
-  min-height: 100vh;
-}
+<style setup lang="scss">
+@import url('./styles/style.scss');
 </style>
