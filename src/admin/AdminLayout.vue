@@ -23,7 +23,7 @@ import MenuSidebar from './components/Common/Menu/MenuSidebar.vue'
 import HeaderAdmin from '@/admin/components/Common/MainAdmin/HeaderAdmin.vue'
 import ContentAdmin from '@/admin/components/Common/MainAdmin/ContentAdmin.vue'
 
-const isCollapsed = ref<boolean>(false)
+const isCollapsed = ref<boolean>(window.innerWidth < 768 ? true : false)
 
 const handleCollapsed = () => {
   isCollapsed.value = !isCollapsed.value

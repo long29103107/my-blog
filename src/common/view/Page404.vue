@@ -5,7 +5,3 @@
     </template>
   </a-result>
 </template>
-
-<script>
-console.log(1)
-</script>
