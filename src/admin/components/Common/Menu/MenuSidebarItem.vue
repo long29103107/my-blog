@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import type MenuSidebarItemType from './../../../types/Menu/MenuSidebarItemType'
+import type MenuSidebarItemType from '../../../types/Common/Menu/MenuSidebarItemType'
 import { defineComponent, type PropType } from 'vue'
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
 

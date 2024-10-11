@@ -10,7 +10,8 @@ export default [
       {
         path: '',
         name: 'Policy',
-        component: Policy
+        component: Policy,
+        redirect: { name: 'UserManagerment' }
       },
       {
         path: 'about',

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type MenuSidebarItemType from '../../../types/Menu/MenuSidebarItemType'
+import type MenuSidebarItemType from '../../../types/Common/Menu/MenuSidebarItemType'
 import MenuSidebarItem from './MenuSidebarItem.vue'
 import { ref, defineComponent } from 'vue'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
