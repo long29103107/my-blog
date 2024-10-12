@@ -1,45 +1,37 @@
 <template>
   <ul class="group-operation">
-    <li class="group-operation_item">
+    <li
+      class="group-operation_item group-operation_item--box-shadow"
+      v-for="operation in operations"
+      :key="operation.id"
+    >
       <div class="group-operation_box">
-        <span class="group-operation_label">label</span>
-        <span class="group-operation_action">
-          <enabled-override-operation />
-          <enabled-operation />
-          <default-disabled-operation />
-          <disabled-operation />
-        </span>
+        <span class="group-operation_label"
+          ><b>{{ operation.label }}</b></span
+        >
+        <group-action-operation :operation="operation" />
       </div>
-    </li>
-    <li class="group-operation_item">
-      <div class="group-operation_box">
-        <span class="group-operation_label">label</span>
-        <span class="group-operation_action">
-          <disabled-override-operation />
-          <enabled-operation />
-          <default-enbled-operation />
-          <disabled-operation />
-        </span>
-      </div>
+      <operation :childOperations="operation.childOperations" />
     </li>
   </ul>
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from 'vue'
-import DefaultEnbledOperation from '../Operation/DefaultEnbledOperation.vue'
-import DefaultDisabledOperation from '../Operation/DefaultDisabledOperation.vue'
-import EnabledOperation from '../Operation/EnabledOperation.vue'
-import DisabledOperation from '../Operation/DisabledOperation.vue'
-import DisabledOverrideOperation from '../Operation/DisabledOverrideOperation.vue'
-import EnabledOverrideOperation from '../Operation/EnabledOverrideOperation.vue'
+import { defineComponent, type PropType } from 'vue'
+import type GroupOperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
+import Operation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/index.vue'
+import GroupActionOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/GroupActionOperation.vue'
+
+const props = defineProps({
+  operations: {
+    type: Array as PropType<GroupOperationType[]>,
+    required: false,
+    default: []
+  }
+})
 
 defineComponent({
-  name: 'GroupOperationAdmin'
-  //components: { DefaultEnbledOperation }
+  name: 'GroupOperationAdmin',
+  components: { GroupActionOperation }
 })
 </script>
-
-<style lang="scss" setup>
-@import url('../../../../../styles/style.scss');
-</style>

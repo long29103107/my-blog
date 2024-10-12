@@ -10,4 +10,11 @@
       flex: auto;
     }
   }
+
+  .group-operation_item.group-operation_item--box-shadow {
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(11, 69, 132, 0.15);
+    margin-top: 10px;
+    border-radius: 10px;
+  }
 }

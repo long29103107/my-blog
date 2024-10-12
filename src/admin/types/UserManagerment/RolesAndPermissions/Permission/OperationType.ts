@@ -1,7 +1,7 @@
 export default interface Operation {
   id: number
   label: string
+  defaultStatus: boolean
+  isOverrided: boolean
   currentStatus: boolean
-  overridedStatus: boolean
-  operationList: Array<Operation>
 }
