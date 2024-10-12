@@ -9,12 +9,17 @@ import type MenuSidebarItemType from '../../../types/Common/Menu/MenuSidebarItem
 import MenuSidebarItem from './MenuSidebarItem.vue'
 import { ref, defineComponent } from 'vue'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
+import { useRoute } from 'vue-router'
 
 const dataMenu: MenuSidebarItemType[] = [
   { key: '1', label: 'Dashboard', icon: VideoCameraOutlined, path: '/admin' },
   { key: '2', label: 'User Managerment', icon: UserOutlined, path: '/admin/user-managerment' }
 ]
-const selectedKeys = ref<string[]>(['1'])
+
+const route = useRoute()
+const defaultSelectedKey = dataMenu.find((x) => x.path == route.fullPath)?.key ?? '1'
+
+const selectedKeys = ref<string[]>([defaultSelectedKey])
 
 const componenent = defineComponent({
   name: 'MenuSidebar',

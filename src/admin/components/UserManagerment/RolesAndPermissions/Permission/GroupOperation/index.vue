@@ -1,7 +1,7 @@
 <template>
   <ul class="group-operation">
     <li
-      class="group-operation_item group-operation_item--box-shadow"
+      class="group-operation_item group-operation_item--box-shadow card"
       v-for="operation in operations"
       :key="operation.id"
     >
