@@ -5,7 +5,7 @@ const About = () => import('@/user/components/About.vue')
 export default [
   {
     path: '/',
-    component: Layout, // Bố cục trang dành cho admin
+    component: Layout,
     children: [
       {
         path: '',
