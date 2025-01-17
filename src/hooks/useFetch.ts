@@ -1,28 +1,19 @@
 import { ref } from 'vue'
+import apiClient from '@/plugins/axios'
 
-export function useFetch<T>(url: string) {
-  const data = ref<T | null>(null)
-  const error = ref<string | null>(null)
+const fetchList = async (url: string) => {
+  const fullPath = import.meta.env.VITE_API_URL + url
+  // console.log('Fullpath', fullPath)
+  const data = ref([])
+  const error = ref({})
 
-  const fetchData = async () => {
-    error.value = null
+  try {
+    const response = await apiClient.get(fullPath)
 
-    try {
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`) // Provide more context
-      }
-      data.value = await response.json()
-    } catch (err) {
-      if (err instanceof Error) {
-        error.value = err.message // Use the Error message
-      } else {
-        error.value = 'An unknown error occurred.'
-      }
-    }
-  }
+    data.value = response.data
+  } catch (error) {}
 
-  fetchData()
-
-  return { data, error }
+  return { error, data }
 }
+
+export default fetchList

@@ -17,8 +17,8 @@
 <script lang="ts" setup>
 import { ref, defineComponent, onMounted } from 'vue'
 import { EditOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import { useFetch } from '@/hooks/useFetch'
-import apiClient from '@/plugins/axios'
+import fetchList from '@/hooks/useFetch'
+import RoleType from '@types/role/RoleType'
 
 const list = ref<RoleType[]>([])
 const loading = ref<boolean>(false)
@@ -26,9 +26,11 @@ const loading = ref<boolean>(false)
 const fetchRoles = async () => {
   try {
     loading.value = true
-    const response = await apiClient.get('/identity/roles')
+    const { data, error } = await fetchList(`/identity/permissions`)
 
-    list.value = response.data.map((role: any) => ({
+    console.log('response', data.value)
+
+    list.value = data.value.map((role: any) => ({
       id: role.id,
       createdBy: role.createdBy || 'Unknown',
       updatedBy: role.updatedBy || null,
@@ -43,8 +45,6 @@ const fetchRoles = async () => {
     loading.value = false
   }
 }
-
-console.log(list)
 
 onMounted(() => {
   fetchRoles()
