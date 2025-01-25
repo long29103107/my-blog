@@ -19,6 +19,8 @@ import { ref, defineComponent, onMounted } from 'vue'
 import { EditOutlined, EyeOutlined } from '@ant-design/icons-vue'
 import fetchList from '@/hooks/useFetch'
 import RoleType from '@types/role/RoleType'
+import { URL_CONSTANTS } from '@/common/constants/url-contants'
+import { ErrorHandler } from '@/mixins'
 
 const list = ref<RoleType[]>([])
 const loading = ref<boolean>(false)
@@ -26,9 +28,8 @@ const loading = ref<boolean>(false)
 const fetchRoles = async () => {
   try {
     loading.value = true
-    const { data, error } = await fetchList(`/identity/permissions`)
-
-    console.log('response', data.value)
+    const { data, error } = await fetchList(URL_CONSTANTS.ROLE.GET_LIST)
+    if (error) ErrorHandler.displayError(error)
 
     list.value = data.value.map((role: any) => ({
       id: role.id,
@@ -40,7 +41,8 @@ const fetchRoles = async () => {
       createdAt: role.createdAt,
       updatedAt: role.updatedAt || null
     })) as RoleType[]
-  } catch (error) {
+  } catch (err: any) {
+    ErrorHandler.displayError(err)
   } finally {
     loading.value = false
   }
