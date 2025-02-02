@@ -4,27 +4,26 @@
   </a-menu>
 </template>
 
-<script setup lang="ts">
-import type MenuSidebarItemType from '../../../types/Common/Menu/MenuSidebarItemType'
-import MenuSidebarItem from './MenuSidebarItem.vue'
+<script lang="ts">
+import type MenuSidebarItemType from '@/types/admin/Menu/MenuSidebarItemType'
 import { ref, defineComponent } from 'vue'
 import { UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
 import { useRoute } from 'vue-router'
 
-const dataMenu: MenuSidebarItemType[] = [
-  { key: '1', label: 'Dashboard', icon: VideoCameraOutlined, path: '/admin' },
-  { key: '2', label: 'User Managerment', icon: UserOutlined, path: '/admin/user-managerment' }
-]
+export default defineComponent({
+  name: 'MenuSidebarAdmin',
+  setup() {
+    const dataMenu: MenuSidebarItemType[] = [
+      { key: '1', label: 'Dashboard', icon: VideoCameraOutlined, path: '/admin' },
+      { key: '2', label: 'User Managerment', icon: UserOutlined, path: '/admin/user-managerment' }
+    ]
 
-const route = useRoute()
-const defaultSelectedKey = dataMenu.find((x) => x.path == route.fullPath)?.key ?? '1'
+    const route = useRoute()
 
-const selectedKeys = ref<string[]>([defaultSelectedKey])
+    const defaultSelectedKey = dataMenu.find((x) => x.path == route.fullPath)?.key ?? '1'
 
-const componenent = defineComponent({
-  name: 'MenuSidebar',
-  components: { MenuSidebarItem },
-  data() {
+    const selectedKeys = ref<string[]>([defaultSelectedKey])
+
     return {
       selectedKeys,
       dataMenu

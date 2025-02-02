@@ -8,7 +8,7 @@ const routes = [
   {
     // will match everything
     path: '/',
-    component: () => import('@/common/view/Page404.vue')
+    component: () => import('@/pages/error/Page404.vue')
   }
 ]
 

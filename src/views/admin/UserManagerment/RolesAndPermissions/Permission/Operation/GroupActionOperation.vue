@@ -11,25 +11,18 @@
   </span>
 </template>
 
-<script lang="ts" setup>
-import type OperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/OperationType'
-import type GroupOperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
+<script lang="ts">
+import type OperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/OperationType'
+import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
 import { defineComponent, type PropType } from 'vue'
-import DefaultEnabledOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/DefaultEnabledOperation.vue'
-import DefaultDisabledOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/DefaultDisabledOperation.vue'
-import EnabledOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/EnabledOperation.vue'
-import DisabledOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/DisabledOperation.vue'
-import DisabledOverrideOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/DisabledOverrideOperation.vue'
-import EnabledOverrideOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/EnabledOverrideOperation.vue'
+import DefaultEnabledOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/DefaultEnabledOperation.vue'
+import DefaultDisabledOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/DefaultDisabledOperation.vue'
+import EnabledOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/EnabledOperation.vue'
+import DisabledOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/DisabledOperation.vue'
+import DisabledOverrideOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/DisabledOverrideOperation.vue'
+import EnabledOverrideOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/EnabledOverrideOperation.vue'
 
-const props = defineProps({
-  operation: {
-    type: Object as PropType<OperationType | GroupOperationType>,
-    required: false
-  }
-})
-
-defineComponent({
+export default defineComponent({
   name: 'GroupActionAdmin',
   components: {
     DefaultEnabledOperation,
@@ -38,6 +31,12 @@ defineComponent({
     DisabledOperation,
     EnabledOverrideOperation,
     DisabledOverrideOperation
+  },
+  props: {
+    operation: {
+      type: Object as PropType<OperationType | GroupOperationType>,
+      required: false
+    }
   }
 })
 </script>

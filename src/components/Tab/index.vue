@@ -7,26 +7,8 @@
 </template>
 
 <script lang="ts">
-import { type PropType, defineProps, defineEmits } from 'vue'
-import type TabType from '@/components/Tab/TabType'
-
-const props = defineProps({
-  tabData: {
-    type: Object as PropType<TabType[]>,
-    required: true,
-    default: []
-  },
-  activeKey: {
-    type: String,
-    required: false
-  }
-})
-
-const emit = defineEmits(['update:activeKey'])
-
-const handleTabChange = (key: string) => {
-  emit('update:activeKey', key)
-}
+import { type PropType, defineComponent, computed } from 'vue'
+import type TabType from './TabType'
 
 export default defineComponent({
   props: {
@@ -39,13 +21,27 @@ export default defineComponent({
       type: String,
       required: false,
       default: '4'
+    },
+    tabData: {
+      type: Object as PropType<TabType[]>,
+      required: true,
+      default: []
+    },
+    activeKey: {
+      type: String,
+      required: false
     }
   },
-  setup(props) {
+  emits: ['update:activeKey'],
+  setup(props, { emit }) {
     const numberCols = computed(() => `grid-cols-${props.cols}`)
     const gapCols = computed(() => `gap-${props.gap}`)
 
-    return { numberCols, gapCols }
+    const handleTabChange = (key: string) => {
+      emit('update:activeKey', key)
+    }
+
+    return { numberCols, gapCols, handleTabChange }
   }
 })
 </script>

@@ -16,22 +16,24 @@
     </a-layout>
   </a-layout>
 </template>
+
 <script lang="ts">
 import { ref, defineComponent } from 'vue'
-import Logo from '../admin/components/Common/Menu/Logo.vue'
-import MenuSidebar from '../admin/components/Common/Menu/MenuSidebar.vue'
-import HeaderAdmin from '@/admin/components/Common/MainAdmin/HeaderAdmin.vue'
-import ContentAdmin from '@/admin/components/Common/MainAdmin/ContentAdmin.vue'
-
-const isCollapsed = ref<boolean>(window.innerWidth < 768 ? true : false)
-
-const handleCollapsed = () => {
-  isCollapsed.value = !isCollapsed.value
-}
+import Logo from '@/views/admin/Common/Menu/Logo.vue'
+import MenuSidebar from '@/views/admin/Common/Menu/MenuSidebar.vue'
+import HeaderAdmin from '@/views/admin/Common/MainAdmin/HeaderAdmin.vue'
+import ContentAdmin from '@/views/admin/Common/MainAdmin/ContentAdmin.vue'
 
 export default defineComponent({
+  name: 'AdminLayout',
   components: { Logo, MenuSidebar, HeaderAdmin, ContentAdmin },
-  data() {
+  setup() {
+    const isCollapsed = ref<boolean>(window.innerWidth < 768 ? true : false)
+
+    const handleCollapsed = () => {
+      isCollapsed.value = !isCollapsed.value
+    }
+
     return {
       isCollapsed,
       handleCollapsed
@@ -40,6 +42,6 @@ export default defineComponent({
 })
 </script>
 
-<style setup lang="scss">
-@import url('./styles/style.scss');
+<style lang="scss">
+@import url('../styles/admin/style.module.scss');
 </style>

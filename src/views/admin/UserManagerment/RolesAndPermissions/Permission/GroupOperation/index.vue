@@ -16,22 +16,21 @@
   </ul>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type GroupOperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
-import Operation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/index.vue'
-import GroupActionOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/GroupActionOperation.vue'
+import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
+import Operation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/index.vue'
+import GroupActionOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/GroupActionOperation.vue'
 
-const props = defineProps({
-  operations: {
-    type: Array as PropType<GroupOperationType[]>,
-    required: false,
-    default: []
-  }
-})
-
-defineComponent({
+export default defineComponent({
   name: 'GroupOperationAdmin',
-  components: { GroupActionOperation }
+  components: { GroupActionOperation },
+  props: {
+    operations: {
+      type: Array as PropType<GroupOperationType[]>,
+      required: false,
+      default: []
+    }
+  }
 })
 </script>

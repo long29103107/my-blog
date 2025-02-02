@@ -1,6 +1,6 @@
-const Layout = () => import('@/admin/AdminLayout.vue')
-const Dasboard = () => import('@/admin/pages/Dasboard.vue')
-const UserManagerment = () => import('@/admin/pages/UserManagerment.vue')
+const Layout = () => import('@/layouts/AdminLayout.vue')
+const Dasboard = () => import('@/pages/admin/Dasboard.vue')
+const UserManagerment = () => import('@/pages/admin/UserManagerment.vue')
 
 export default [
   {

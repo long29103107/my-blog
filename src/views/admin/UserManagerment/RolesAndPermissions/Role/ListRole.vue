@@ -14,48 +14,53 @@
   </a-list>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { ref, defineComponent, onMounted } from 'vue'
 import { EditOutlined, EyeOutlined } from '@ant-design/icons-vue'
 import fetchList from '@/hooks/common/useFetch'
-import RoleType from '@types/role/RoleType'
+import RoleType from '@/types/common/role/RoleType'
 import { URL_CONSTANTS } from '@/constants/url-contants'
 import { ErrorHandler } from '@/mixins'
 
-const list = ref<RoleType[]>([])
-const loading = ref<boolean>(false)
-
-const fetchRoles = async () => {
-  try {
-    loading.value = true
-    const { data, error } = await fetchList(URL_CONSTANTS.ROLE.GET_LIST)
-    if (error) ErrorHandler.displayError(error)
-
-    list.value = data.value.map((role: any) => ({
-      id: role.id,
-      createdBy: role.createdBy || 'Unknown',
-      updatedBy: role.updatedBy || null,
-      code: role.code,
-      name: role.name,
-      isActive: role.isActive,
-      createdAt: role.createdAt,
-      updatedAt: role.updatedAt || null
-    })) as RoleType[]
-  } catch (err: any) {
-    ErrorHandler.displayError(err)
-  } finally {
-    loading.value = false
-  }
-}
-
-onMounted(() => {
-  fetchRoles()
-})
-
-const component = defineComponent({
+export default defineComponent({
   name: 'ListRole',
-  components: { EditOutlined, EyeOutlined },
-  setup() {}
+  components: {
+    EditOutlined,
+    EyeOutlined
+  },
+  setup() {
+    const list = ref<RoleType[]>([])
+    const loading = ref<boolean>(false)
+
+    const fetchRoles = async () => {
+      try {
+        loading.value = true
+        const { data, error } = await fetchList(URL_CONSTANTS.ROLE.GET_LIST)
+        if (error) ErrorHandler.displayError(error)
+
+        list.value = data.value.map((role: any) => ({
+          id: role.id,
+          createdBy: role.createdBy || 'Unknown',
+          updatedBy: role.updatedBy || null,
+          code: role.code,
+          name: role.name,
+          isActive: role.isActive,
+          createdAt: role.createdAt,
+          updatedAt: role.updatedAt || null
+        })) as RoleType[]
+      } catch (err: any) {
+        ErrorHandler.displayError(err)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    onMounted(() => {
+      fetchRoles()
+    })
+
+    return { list, loading }
+  }
 })
 </script>
 

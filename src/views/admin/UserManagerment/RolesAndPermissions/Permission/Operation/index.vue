@@ -13,21 +13,20 @@
   </li>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { defineComponent, type PropType } from 'vue'
-import type OperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/OperationType'
-import GroupActionOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/Operation/GroupActionOperation.vue'
+import type OperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/OperationType'
+import GroupActionOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/GroupActionOperation.vue'
 
-var props = defineProps({
-  childOperations: {
-    type: Object as PropType<OperationType[]>,
-    required: false,
-    default: []
-  }
-})
-
-defineComponent({
+export default defineComponent({
   name: 'OperationAdmin',
-  components: { GroupActionOperation }
+  components: { GroupActionOperation },
+  props: {
+    childOperations: {
+      type: Object as PropType<OperationType[]>,
+      required: false,
+      default: []
+    }
+  }
 })
 </script>

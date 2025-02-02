@@ -2,10 +2,10 @@
   <group-operation :operations="operations" />
 </template>
 
-<script lang="ts" setup>
-import GroupOperation from '@/admin/components/UserManagerment/RolesAndPermissions/Permission/GroupOperation/index.vue'
+<script lang="ts">
+import GroupOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperation/index.vue'
 import { defineComponent } from 'vue'
-import type GroupOperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
+import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
 
 const operations: Array<GroupOperationType> = [
   {
@@ -79,7 +79,7 @@ const operations: Array<GroupOperationType> = [
   }
 ]
 
-defineComponent({
+export default defineComponent({
   name: 'GroupOperationAdmin',
   components: { GroupOperation },
   data() {

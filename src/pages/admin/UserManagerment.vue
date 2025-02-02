@@ -4,24 +4,24 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import Tab from '@/common/components/Tab/index.vue'
+<script lang="ts">
+import Tab from '@/components/Tab/index.vue'
 import type TabType from '@/components/Tab/TabType'
 import { defineComponent, ref } from 'vue'
-import Profile from '@/admin/components/UserManagerment/Profile/index.vue'
-import RolesAndPermissions from '@/admin/components/UserManagerment/RolesAndPermissions/index.vue'
+import Profile from '@/views/admin/UserManagerment/Profile/index.vue'
+import RolesAndPermissions from '@/views/admin/UserManagerment/RolesAndPermissions/index.vue'
 
-const activeKey = ref<String>('1')
-
-const tabData: TabType[] = [
-  { key: '1', label: 'Profile', component: Profile },
-  { key: '2', label: 'Roles and Permissions', component: RolesAndPermissions }
-]
-
-defineComponent({
+export default defineComponent({
   name: 'UserManagermentAdmin',
-  components: { Tab },
-  data() {
+  components: { Tab, Profile, RolesAndPermissions },
+  setup() {
+    const activeKey = ref<String>('1')
+
+    const tabData: TabType[] = [
+      { key: '1', label: 'Profile', component: Profile },
+      { key: '2', label: 'Roles and Permissions', component: RolesAndPermissions }
+    ]
+
     return {
       tabData,
       activeKey
