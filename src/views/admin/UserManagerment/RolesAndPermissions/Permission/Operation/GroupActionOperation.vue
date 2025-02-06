@@ -11,7 +11,7 @@
   </span>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import type OperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/OperationType'
 import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
 import { defineComponent, type PropType } from 'vue'
@@ -22,7 +22,14 @@ import DisabledOperation from '@/views/admin/UserManagerment/RolesAndPermissions
 import DisabledOverrideOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/DisabledOverrideOperation.vue'
 import EnabledOverrideOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/Operation/EnabledOverrideOperation.vue'
 
-export default defineComponent({
+const props = defineProps({
+  operation: {
+    type: Object as PropType<OperationType | GroupOperationType>,
+    required: false
+  }
+})
+
+const component = defineComponent({
   name: 'GroupActionAdmin',
   components: {
     DefaultEnabledOperation,
@@ -31,12 +38,6 @@ export default defineComponent({
     DisabledOperation,
     EnabledOverrideOperation,
     DisabledOverrideOperation
-  },
-  props: {
-    operation: {
-      type: Object as PropType<OperationType | GroupOperationType>,
-      required: false
-    }
   }
 })
 </script>

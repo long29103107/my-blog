@@ -6,42 +6,42 @@
   </a-tabs>
 </template>
 
-<script lang="ts">
-import { type PropType, defineComponent, computed } from 'vue'
+<script lang="ts" setup>
+import { type PropType, defineComponent, computed, defineProps, defineEmits } from 'vue'
 import type TabType from './TabType'
 
-export default defineComponent({
-  props: {
-    cols: {
-      type: String,
-      required: false,
-      default: '1'
-    },
-    gap: {
-      type: String,
-      required: false,
-      default: '4'
-    },
-    tabData: {
-      type: Object as PropType<TabType[]>,
-      required: true,
-      default: []
-    },
-    activeKey: {
-      type: String,
-      required: false
-    }
+const props = defineProps({
+  cols: {
+    type: String,
+    required: false,
+    default: '1'
   },
-  emits: ['update:activeKey'],
-  setup(props, { emit }) {
-    const numberCols = computed(() => `grid-cols-${props.cols}`)
-    const gapCols = computed(() => `gap-${props.gap}`)
-
-    const handleTabChange = (key: string) => {
-      emit('update:activeKey', key)
-    }
-
-    return { numberCols, gapCols, handleTabChange }
+  gap: {
+    type: String,
+    required: false,
+    default: '4'
+  },
+  tabData: {
+    type: Object as PropType<TabType[]>,
+    required: true,
+    default: []
+  },
+  activeKey: {
+    type: String,
+    required: false
   }
+})
+const emit = defineEmits(['update:activeKey'])
+
+const numberCols = computed(() => `grid-cols-${props.cols}`)
+
+const gapCols = computed(() => `gap-${props.gap}`)
+
+const handleTabChange = (key: string) => {
+  emit('update:activeKey', key)
+}
+
+const component = defineComponent({
+  name: 'Tab'
 })
 </script>

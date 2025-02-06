@@ -17,28 +17,22 @@
   </a-layout>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ref, defineComponent } from 'vue'
 import Logo from '@/views/admin/Common/Menu/Logo.vue'
 import MenuSidebar from '@/views/admin/Common/Menu/MenuSidebar.vue'
 import HeaderAdmin from '@/views/admin/Common/MainAdmin/HeaderAdmin.vue'
 import ContentAdmin from '@/views/admin/Common/MainAdmin/ContentAdmin.vue'
 
-export default defineComponent({
+const isCollapsed = ref<boolean>(window.innerWidth < 768 ? true : false)
+
+const handleCollapsed = () => {
+  isCollapsed.value = !isCollapsed.value
+}
+
+const component = defineComponent({
   name: 'AdminLayout',
-  components: { Logo, MenuSidebar, HeaderAdmin, ContentAdmin },
-  setup() {
-    const isCollapsed = ref<boolean>(window.innerWidth < 768 ? true : false)
-
-    const handleCollapsed = () => {
-      isCollapsed.value = !isCollapsed.value
-    }
-
-    return {
-      isCollapsed,
-      handleCollapsed
-    }
-  }
+  components: { Logo, MenuSidebar, HeaderAdmin, ContentAdmin }
 })
 </script>
 

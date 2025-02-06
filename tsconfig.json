@@ -17,6 +17,10 @@
     "checkJs": true,
     "noImplicitAny": false,
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
     }

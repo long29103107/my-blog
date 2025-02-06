@@ -17,34 +17,34 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent, type PropType } from 'vue'
+<script lang="ts" setup>
+import { defineComponent, type PropType, defineProps, defineEmits } from 'vue'
 
 type InputTypes = 'text' | 'email' | 'password' | 'checkbox' | 'radio'
 
-export default defineComponent({
-  props: {
-    type: {
-      type: String as PropType<InputTypes>,
-      required: false,
-      default: 'text',
-      validator: (value: string) => {
-        return ['text', 'email', 'password', 'checkbox', 'radio'].includes(value)
-      }
-    },
-    id: String,
-    placeholder: String,
-    name: String,
-    classes: String,
-    modelValue: [String, Boolean]
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const handleInput = () => {
-      emit('update:modelValue', props.modelValue)
+const props = defineProps({
+  type: {
+    type: String as PropType<InputTypes>,
+    required: false,
+    default: 'text',
+    validator: (value: string) => {
+      return ['text', 'email', 'password', 'checkbox', 'radio'].includes(value)
     }
+  },
+  id: String,
+  placeholder: String,
+  name: String,
+  classes: String,
+  modelValue: [String, Boolean]
+})
 
-    return { handleInput }
-  }
+const emit = defineEmits(['update:modelValue'])
+
+const handleInput = () => {
+  emit('update:modelValue', props.modelValue)
+}
+
+const component = defineComponent({
+  name: 'TextArea'
 })
 </script>

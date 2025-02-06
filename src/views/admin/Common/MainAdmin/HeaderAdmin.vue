@@ -5,33 +5,30 @@
   </a-layout-header>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script lang="ts" setup>
+import { defineComponent, defineProps, defineEmits, ref } from 'vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 
-export default defineComponent({
-  name: 'HeaderAdmin',
-  components: { MenuUnfoldOutlined, MenuFoldOutlined },
-  props: {
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  },
-  setup(props, { emit }) {
-    const isCollapsed = ref<boolean>()
-
-    // Method to toggle collapsed state and emit event
-    const toggleSidebar = () => {
-      isCollapsed.value = !props.collapsed
-      emit('update:collapsed', isCollapsed.value)
-    }
-
-    return {
-      isCollapsed,
-      toggleSidebar
-    }
+const props = defineProps({
+  collapsed: {
+    type: Boolean,
+    required: false,
+    default: false
   }
+})
+
+const isCollapsed = ref<boolean>()
+
+const emit = defineEmits(['update:collapsed'])
+
+// Method to toggle collapsed state and emit event
+const toggleSidebar = () => {
+  isCollapsed.value = !props.collapsed
+  emit('update:collapsed', isCollapsed.value)
+}
+
+const component = defineComponent({
+  name: 'HeaderAdmin',
+  components: { MenuUnfoldOutlined, MenuFoldOutlined }
 })
 </script>

@@ -2,7 +2,7 @@
   <group-operation :operations="operations" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import GroupOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperation/index.vue'
 import { defineComponent } from 'vue'
 import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
@@ -79,11 +79,8 @@ const operations: Array<GroupOperationType> = [
   }
 ]
 
-export default defineComponent({
+const component = defineComponent({
   name: 'GroupOperationAdmin',
-  components: { GroupOperation },
-  data() {
-    return { operations }
-  }
+  components: { GroupOperation }
 })
 </script>

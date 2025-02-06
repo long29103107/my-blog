@@ -2,11 +2,11 @@
   <close-square-filled class="cursor-pointer font-size-25px" :style="{ color: '#f13c3cbd' }" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { CloseSquareFilled } from '@ant-design/icons-vue'
 
-export default defineComponent({
+const component = defineComponent({
   name: 'DisabledOverrideOperationAdmin',
   components: { CloseSquareFilled }
 })

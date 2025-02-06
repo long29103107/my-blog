@@ -11,12 +11,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Role from './Role/index.vue'
 import Permission from './Permission/index.vue'
 import { defineComponent } from 'vue'
 
-export default defineComponent({
+const component = defineComponent({
   name: 'RoleAndPermissionAdmin',
   components: { Role, Permission }
 })

@@ -58,47 +58,39 @@
   </a-form>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, reactive } from 'vue'
 
-export default defineComponent({
-  name: 'FormProfile',
-  setup(props) {
-    const layout = {
-      labelCol: { span: 8 },
-      wrapperCol: { span: 16 }
-    }
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 }
+}
 
-    const validateMessages = {
-      required: '${label} is required!',
-      types: {
-        email: '${label} is not a valid email!',
-        number: '${label} is not a valid number!'
-      },
-      number: {
-        range: '${label} must be between ${min} and ${max}'
-      }
-    }
-
-    const formState = reactive({
-      user: {
-        name: '',
-        age: undefined,
-        email: '',
-        website: '',
-        introduction: ''
-      }
-    })
-
-    const onFinish = (values: any) => {}
-
-    return {
-      layout,
-      validateMessages,
-      formState,
-      onFinish
-    }
+const validateMessages = {
+  required: '${label} is required!',
+  types: {
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!'
+  },
+  number: {
+    range: '${label} must be between ${min} and ${max}'
   }
+}
+
+const formState = reactive({
+  user: {
+    name: '',
+    age: undefined,
+    email: '',
+    website: '',
+    introduction: ''
+  }
+})
+
+const onFinish = (values: any) => {}
+
+const component = defineComponent({
+  name: 'FormProfile'
 })
 </script>
 

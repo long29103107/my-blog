@@ -13,33 +13,34 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, PropType } from 'vue'
-import OptionTypes from './OptionTypes'
+import { defineComponent, type PropType, defineProps } from 'vue'
+import type OptionTypes from './OptionTypes'
 
-export default defineComponent({
-  name: 'Select',
-  props: {
-    id: {
-      type: String,
-      required: false
-    },
-    name: {
-      type: String,
-      required: false
-    },
-    classes: {
-      type: String,
-      required: false
-    },
-    modelValue: {
-      type: String,
-      required: false
-    },
-    options: {
-      type: Array as PropType<OptionTypes[]>,
-      required: false,
-      default: []
-    }
+const props = defineProps({
+  id: {
+    type: String,
+    required: false
+  },
+  name: {
+    type: String,
+    required: false
+  },
+  classes: {
+    type: String,
+    required: false
+  },
+  modelValue: {
+    type: String,
+    required: false
+  },
+  options: {
+    type: Array as PropType<OptionTypes[]>,
+    required: false,
+    default: []
   }
+})
+
+const component = defineComponent({
+  name: 'Select'
 })
 </script>

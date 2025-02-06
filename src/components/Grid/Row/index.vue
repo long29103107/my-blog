@@ -2,28 +2,27 @@
   <div class="grid" :class="[numberCols, gapCols]"><slot /></div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
+<script lang="ts" setup>
+import { defineComponent, computed, defineProps } from 'vue'
 
-export default defineComponent({
-  props: {
-    cols: {
-      type: String,
-      required: false,
-      default: '1'
-    },
-    gap: {
-      type: String,
-      required: false,
-      default: '4'
-    }
+const props = defineProps({
+  cols: {
+    type: String,
+    required: false,
+    default: '1'
   },
-  setup(props) {
-    const numberCols = computed(() => `grid-cols-${props.cols}`)
-    const gapCols = computed(() => `gap-${props.gap}`)
-
-    return { numberCols, gapCols }
+  gap: {
+    type: String,
+    required: false,
+    default: '4'
   }
+})
+
+const numberCols = computed(() => `grid-cols-${props.cols}`)
+const gapCols = computed(() => `gap-${props.gap}`)
+
+const component = defineComponent({
+  name: 'GridRow'
 })
 </script>
 

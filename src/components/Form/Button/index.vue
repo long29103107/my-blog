@@ -4,26 +4,24 @@
   </button>
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { type PropType, defineComponent, defineProps } from 'vue'
 
 type ButtonTypes = 'button' | 'submit' | 'reset' | undefined
 
-export default defineComponent({
-  name: 'Button',
-  props: {
-    type: {
-      type: String as PropType<ButtonTypes>,
-      required: false,
-      default: 'button',
-      validator: (value: string) => {
-        const _buttonTypes = ['button', 'submit', 'reset']
-        return _buttonTypes.includes(value)
-      }
+var props = defineProps({
+  type: {
+    type: String as PropType<ButtonTypes>,
+    required: false,
+    default: 'button',
+    validator: (value: string) => {
+      const _buttonTypes = ['button', 'submit', 'reset']
+      return _buttonTypes.includes(value)
     }
-  },
-  setup(props) {
-    return {}
   }
+})
+
+const component = defineComponent({
+  name: 'Button'
 })
 </script>

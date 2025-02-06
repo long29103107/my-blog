@@ -7,23 +7,24 @@
   </a-menu-item>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import type MenuSidebarItemType from '@/types/admin/Menu/MenuSidebarItemType'
-import { defineComponent, type PropType } from 'vue'
+import { defineComponent, defineProps, type PropType } from 'vue'
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue'
 
-export default defineComponent({
+const props = defineProps({
+  menuItem: {
+    type: Object as PropType<MenuSidebarItemType>,
+    required: true
+  }
+})
+
+const component = defineComponent({
   name: 'MenuSidebarItemAdmin',
   components: {
     UserOutlined,
     VideoCameraOutlined,
     UploadOutlined
-  },
-  props: {
-    menuItem: {
-      type: Object as PropType<MenuSidebarItemType>,
-      required: true
-    }
   }
 })
 </script>

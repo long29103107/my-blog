@@ -6,18 +6,14 @@
   </a-row>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import SearchSelect from '@/components/Form/SearchSelect/index.vue'
 import ListRole from './ListRole.vue'
-import type OptionType from '@/components/Form/SearchSelect/OptionType'
 import { defineComponent, ref } from 'vue'
 
-export default defineComponent({
+const component = defineComponent({
   name: 'RoleAdmin',
   components: { SearchSelect, ListRole }
-  // data() {
-  //   return { options, value }
-  // }
 })
 </script>
 

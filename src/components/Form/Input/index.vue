@@ -17,43 +17,44 @@
   />
 </template>
 
-<script lang="ts">
-import { PropType, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { type PropType, defineComponent } from 'vue'
 
 type InputTypes = 'text' | 'email' | 'password' | 'checkbox' | 'radio' | undefined
 
-export default defineComponent({
-  name: 'Input',
-  props: {
-    type: {
-      type: String as PropType<InputTypes>,
-      required: false,
-      default: 'text',
-      validator: (value: string) => {
-        const _buttonTypes = ['text', 'email', 'password', 'checkbox', 'radio']
-        return _buttonTypes.includes(value)
-      }
-    },
-    id: {
-      type: String,
-      required: false
-    },
-    placeholder: {
-      type: String,
-      required: false
-    },
-    name: {
-      type: String,
-      required: false
-    },
-    classes: {
-      type: String,
-      required: false
-    },
-    modelValue: {
-      type: [String, Boolean],
-      required: false
+const props = defineProps({
+  type: {
+    type: String as PropType<InputTypes>,
+    required: false,
+    default: 'text',
+    validator: (value: string) => {
+      const _buttonTypes = ['text', 'email', 'password', 'checkbox', 'radio']
+      return _buttonTypes.includes(value)
     }
+  },
+  id: {
+    type: String,
+    required: false
+  },
+  placeholder: {
+    type: String,
+    required: false
+  },
+  name: {
+    type: String,
+    required: false
+  },
+  classes: {
+    type: String,
+    required: false
+  },
+  modelValue: {
+    type: [String, Boolean],
+    required: false
   }
+})
+
+const conponent = defineComponent({
+  name: 'Input'
 })
 </script>

@@ -15,11 +15,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import FormProfile from './FormProfile/index.vue'
 
-export default defineComponent({
+const component = defineComponent({
   name: 'ProfileAdmin',
   components: {
     FormProfile
