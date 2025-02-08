@@ -11,11 +11,11 @@ import { defineComponent, ref } from 'vue'
 import Profile from '@/views/admin/UserManagerment/Profile/index.vue'
 import RolesAndPermissions from '@/views/admin/UserManagerment/RolesAndPermissions/index.vue'
 
-const activeKey = ref<String>('1')
+const activeKey = ref<Number>(1)
 
 const tabData: TabType[] = [
-  { key: '1', label: 'Profile', component: Profile },
-  { key: '2', label: 'Roles and Permissions', component: RolesAndPermissions }
+  { key: 1, label: 'Profile', component: Profile },
+  { key: 2, label: 'Roles and Permissions', component: RolesAndPermissions }
 ]
 
 const component = defineComponent({

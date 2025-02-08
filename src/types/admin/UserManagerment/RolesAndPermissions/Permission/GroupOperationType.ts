@@ -1,4 +1,4 @@
-import type OperationType from '@/admin/types/UserManagerment/RolesAndPermissions/Permission/OperationType'
+import type OperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/OperationType'
 
 export default interface GroupOperationType {
   id: number

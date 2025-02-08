@@ -6,14 +6,7 @@
     :placeholder="placeholder"
     :class="classes"
     :value="modelValue"
-    @input="
-      $emit(
-        'update:modelValue',
-        type == 'checkbox'
-          ? ($event?.target as HTMLLInputElement).checked
-          : ($event?.target as HTMLLInputElement).value
-      )
-    "
+    @input="handleInput"
   />
 </template>
 
@@ -47,4 +40,13 @@ const handleInput = () => {
 const component = defineComponent({
   name: 'TextArea'
 })
+
+// @input="
+//       $emit(
+//         'update:modelValue',
+//         type == 'checkbox'
+//           ? ($event?.target as HTMLLInputElement).checked
+//           : ($event?.target as HTMLLInputElement).value
+//       )
+//     "
 </script>

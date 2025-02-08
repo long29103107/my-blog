@@ -6,19 +6,12 @@
     :placeholder="placeholder"
     :class="classes"
     :value="modelValue"
-    @input="
-      $emit(
-        'update:modelValue',
-        type == 'checkbox'
-          ? ($event?.target as HTMLInputElement).checked
-          : ($event?.target as HTMLInputElement).value
-      )
-    "
+    @input="handleClick"
   />
 </template>
 
 <script lang="ts" setup>
-import { type PropType, defineComponent } from 'vue'
+import { type PropType, defineComponent, defineEmits } from 'vue'
 
 type InputTypes = 'text' | 'email' | 'password' | 'checkbox' | 'radio' | undefined
 
@@ -53,6 +46,17 @@ const props = defineProps({
     required: false
   }
 })
+
+const emit = defineEmits(['update:modelValue'])
+
+const handleClick = (event: Event) => {
+  emit(
+    'update:modelValue',
+    props.type == 'checkbox'
+      ? (event?.target as HTMLInputElement).checked
+      : (event?.target as HTMLInputElement).value
+  )
+}
 
 const conponent = defineComponent({
   name: 'Input'

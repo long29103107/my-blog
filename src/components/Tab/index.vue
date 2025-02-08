@@ -27,7 +27,7 @@ const props = defineProps({
     default: []
   },
   activeKey: {
-    type: String,
+    type: Number,
     required: false
   }
 })

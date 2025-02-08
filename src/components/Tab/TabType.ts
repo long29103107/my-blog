@@ -1,5 +1,5 @@
 export default interface TabType {
-  key: string
+  key: Number
   label: string
   component: Object
 }

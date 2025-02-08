@@ -5,12 +5,12 @@
     :placeholder="placeholder"
     :class="classes"
     :value="modelValue"
-    @input="$emit('update:modelValue', ($event?.target as HTMLLInputElement).value)"
+    @input="handleInput"
   />
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, defineProps } from 'vue'
+import { defineComponent, defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
   id: {
@@ -38,4 +38,11 @@ const props = defineProps({
 const component = defineComponent({
   name: 'Textarea'
 })
+
+const emit = defineEmits(['update:modelValue'])
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLTextAreaElement
+  emit('update:modelValue', target.value)
+}
 </script>

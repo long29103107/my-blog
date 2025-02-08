@@ -1,11 +1,5 @@
 <template>
-  <select
-    :name="name"
-    :id="id"
-    :class="classes"
-    :value="modelValue"
-    @input="$emit('update:modelValue', ($event?.target as HTMLLInputElement).value)"
-  >
+  <select :name="name" :id="id" :class="classes" :value="modelValue" @input="handleInput">
     <option v-for="option in options" :key="JSON.stringify(option)" :value="option.value">
       {{ option.label }}
     </option>
@@ -13,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, type PropType, defineProps } from 'vue'
+import { defineComponent, type PropType, defineProps, defineEmits } from 'vue'
 import type OptionTypes from './OptionTypes'
 
 const props = defineProps({
@@ -39,6 +33,13 @@ const props = defineProps({
     default: []
   }
 })
+
+const emit = defineEmits(['update:modelValue'])
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  emit('update:modelValue', target.value)
+}
 
 const component = defineComponent({
   name: 'Select'
