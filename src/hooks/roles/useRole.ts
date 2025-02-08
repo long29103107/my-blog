@@ -1,56 +1,29 @@
-// import { ref, computed } from 'vue'
-// import { useFetch } from '@/hooks/useFetch'
+import { ref } from 'vue';
+import type RoleType from '@/types/common/role/RoleType'
+import { displayError } from '@/utils/ErrorHandler';
+import { URL_CONSTANTS } from '@/constants/url-contants'
+import { fetchList } from '@/hooks/common/useFetch'
 
-// export function useRoles(initialRoles) {
-//   const roles = ref([...initialRoles])
+export function useRoles() {
+  const roles = ref<RoleType[]>([]); 
+  const loading = ref(false);
+  const error = ref<unknown | null>(null);
 
-//   // Fetch roles from API
-//   const fetchRoles = async () => {
-//     isLoading.value = true
-//     error.value = null
-//     try {
-//       const response = await apiClient.get('/identity/roles')
-//       if (!response.ok) throw new Error('Failed to fetch roles')
-//       roles.value = await response.json()
-//     } catch (err) {
-//       error.value = err.message
-//     } finally {
-//       isLoading.value = false
-//     }
-//   }
+  const fetchRoles = async () => {
+    loading.value = true;
+    error.value = null;
+    try {
+      const {error, data} = await fetchList(URL_CONSTANTS.ROLE.GET_LIST); 
+      roles.value = data.value;
+    } catch (err) {
+      error.value = err;
+      displayError(err); 
+    } finally {
+      loading.value = false;
+    }
+  };
 
-//   // Get all active roles
-//   const activeRoles = computed(() => roles.value.filter((role) => role.isActive))
+  fetchRoles()
 
-//   // Get all inactive roles
-//   const inactiveRoles = computed(() => roles.value.filter((role) => !role.isActive))
-
-//   // Toggle the active state of a role by ID
-//   const toggleRoleActiveState = (roleId) => {
-//     const role = roles.value.find((role) => role.id === roleId)
-//     if (role) {
-//       role.isActive = !role.isActive
-//     }
-//   }
-
-//   // Add a new role
-//   const addRole = (newRole) => {
-//     roles.value.push({
-//       id: Date.now(), // Generate a unique ID
-//       createdBy: '',
-//       updatedBy: '',
-//       code: newRole.code || 'new-role',
-//       name: newRole.name || 'New Role',
-//       isActive: newRole.isActive ?? true,
-//       createdAt: new Date().toISOString(),
-//       updatedAt: null
-//     })
-//   }
-//   return {
-//     roles,
-//     activeRoles,
-//     inactiveRoles,
-//     toggleRoleActiveState,
-//     addRole
-//   }
-// }
+  return { roles, loading, error, fetchRoles };
+}

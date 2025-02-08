@@ -6,7 +6,7 @@
   </select>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { defineComponent, type PropType, defineProps, defineEmits } from 'vue'
 import type OptionTypes from './OptionTypes'
 
