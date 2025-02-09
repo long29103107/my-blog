@@ -6,7 +6,6 @@ const routes = [
   ...admin,
   ...user,
   {
-    // will match everything
     path: '/',
     component: () => import('@/pages/error/Page404.vue')
   }

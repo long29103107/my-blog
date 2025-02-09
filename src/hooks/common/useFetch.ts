@@ -8,7 +8,6 @@ const fetchList = async (url: string) => {
   const error = ref({})
 
   try {
-    console.log(fullPath)
     const response = await apiClient.get(fullPath)
     data.value = response.data
   } catch (error) {}

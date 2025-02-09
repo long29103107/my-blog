@@ -4,7 +4,7 @@ import { displayError } from '@/utils/ErrorHandler';
 import { URL_CONSTANTS } from '@/constants/url-contants'
 import { fetchList } from '@/hooks/common/useFetch'
 
-export function useRole() {
+export function usePermission() {
   const roles = ref<RoleType[]>([]); 
   const loading = ref(false);
   const error = ref<unknown | null>(null);

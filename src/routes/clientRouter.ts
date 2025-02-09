@@ -1,3 +1,5 @@
+import { useRouter } from 'vue-router';
+
 const Layout = () => import('@/layouts/UserLayout.vue')
 const Home = () => import('@/pages/client/Home/index.vue')
 const Login = () => import('@/pages/client/Authen/Login.vue')
@@ -9,7 +11,7 @@ export default [
     component: Layout,
     children: [
       {
-        path: 'login',
+        path: '',
         name: 'Home',
         component: Home
       },

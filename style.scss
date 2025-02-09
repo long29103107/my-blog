@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 $enabled-operation-color: #16b101bf;
 $disabled-operation-color: #f13c3cbd;
 $enabled-current-operation-color: #126406;

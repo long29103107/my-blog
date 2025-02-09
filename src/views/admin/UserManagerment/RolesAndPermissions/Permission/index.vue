@@ -7,6 +7,8 @@ import GroupOperation from '@/views/admin/UserManagerment/RolesAndPermissions/Pe
 import { defineComponent } from 'vue'
 import type GroupOperationType from '@/types/admin/UserManagerment/RolesAndPermissions/Permission/GroupOperationType'
 
+// const
+
 const operations: Array<GroupOperationType> = [
   {
     id: 1,
